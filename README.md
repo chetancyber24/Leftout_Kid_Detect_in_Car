@@ -1,12 +1,12 @@
 # How to run Python Program in Windows 10
 
- - Unzip project showcase folder.
+ - Clone this Github reprository.
  - Open command prompt and initialize Openvino environment (run
    setupvars.bat).
- - Navigate to project showcase folder in command prompt.
- - Run this command on command prompt: python
-   Left_out_kid_detect_openvino.py  --input .\demo_video.mp4  --cpu_ext
-   absolute_path_to_ cpu_extension_file
+ - Navigate to Github reprository folder in command prompt.
+ - Run this command on command prompt: **python Left_out_kid_detect_openvino.py  --input .\demo_video.mp4   --cpu_ext .\cpu_extension_avx2.dll**
+ - ***--input path_to_input_video_file*** arg parameter is used to provide input video file(car cabin view) to perform inference on it.
+ - ***--cpu_ext path_to_cpu_extension_file*** arg parameter is used to provide cpu extension file. It is processor and OS dependent file so provide cpu extension file accordingly to your system configuration. 
  - Expected output will be:
 
    On newly opened opencv window video will play along with          classification of car        occupants as either kid or adult. It    will also   have warning text embedded on video when  alone kid is    present after   threshold amount of time (set to 2 sec here,          ALONE_KID_TIME_THREESHOLD parameter inside Python script.) (see below section **Output snapshots**). If any key pressed  during video inferring    , program will end.
