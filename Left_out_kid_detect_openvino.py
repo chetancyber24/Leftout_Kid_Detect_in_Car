@@ -75,8 +75,9 @@ else:
     
     out_video=cv2.VideoWriter(out_video_name,cv2.CAP_OPENCV_MJPEG,cv2.VideoWriter_fourcc('M','J','P','G'), fps, (frame_width,frame_height))
 padding=20
-cv2.namedWindow('Left Out Kid Detection',cv2.WINDOW_NORMAL)
-cv2.resizeWindow('Left Out Kid Detection', 600,450)
+cv2.namedWindow('Left Out Kid Detection in Car: Inferred Output',cv2.WINDOW_NORMAL)
+cv2.resizeWindow('Left Out Kid Detection in Car: Inferred Output', 600,450)
+frame_no =1
 while cv2.waitKey(1)<0:
     if(not IS_IMAGE):
      hasFrame,frame=video.read()
@@ -120,16 +121,18 @@ while cv2.waitKey(1)<0:
         cv2.putText(resultImg,current_occupant_category , (faceBox[0], faceBox[1]-10), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0,255,255), 2, cv2.LINE_AA) #f'{age}'
     kid_left_out=detect_leftout_kid(occupants_age_category,fps)
     if(kid_left_out==1):
-        print('Warning :Detected alone kid')
+        print('Frame no. {} Inference Output:  Warning :Detected alone kid'.format(frame_no))
         frame_height=resultImg.shape[0]
         cv2.putText(resultImg, 'Warning: Alone Kid Detected', (20, frame_height-20), cv2.FONT_HERSHEY_SIMPLEX, 1.5, (0,0,255), 2, cv2.LINE_AA)
+        frame_no+=1
     elif(kid_left_out==0):
-        print('Adult is present in car')
+        print('Frame no. {} Inference Output:  Adult is present in car'.format(frame_no))
         frame_height=resultImg.shape[0]
         cv2.putText(resultImg, 'Adult is present in car', (20, frame_height-20), cv2.FONT_HERSHEY_SIMPLEX, 1.5, (0,255,0), 2, cv2.LINE_AA)
+        frame_no+=1
     else:
         None 
-    cv2.imshow('Left Out Kid Detection', resultImg)
+    cv2.imshow('Left Out Kid Detection in Car: Inferred Output', resultImg)
     if(IS_IMAGE):
       cv2.waitKey(0)
       break
