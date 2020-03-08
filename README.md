@@ -1,27 +1,3 @@
-
-
- 
-
-
-# Problem Statement
-
-Child heatstroke car death is big safety issue and it caused significant no of children death worldwide.  In 2019, there are **53 children deaths** due to hot car death alone in US (reference [https://www.kidsandcars.org/how-kids-get-hurt/heat-stroke/](https://www.kidsandcars.org/how-kids-get-hurt/heat-stroke/)) .  On average there are 38 deaths per year and **940 children death** since 1990 in US alone, worldwide number will be more.
-
-
-
-# Solution(Idea)
-
-Our  idea to solve above problem is to use in car camera to detect alone left out kid(s) with help of computer vision and deep learning model. Below is pictorial representation (**Flow Chart Section**) of our idea to detect left out kid in car. We are using camera to detect occupants age and deciding whether there are **only kid(s)** present in car for more than threshold time, if yes, we raise alarm i.e send sms or app notifications to parents  either using Car V2X technology(Connected car) or in-built modem with camera. It can also raise alarm to emergency response team (i.e. 911).
-
-To detect occupants age, first we use face detection deep learning model to detect face and get its associated bounding box. Then we cropped face of each occupant and feed it to age prediction deep learning model to predict age of each occupant in car. Once we have predicted age of all occupants, we categorized each occupant to kid (less than or equal to 12 years) or adult (greater than 12 years) in given frame. If we detect only kid(s) with no adult present in car, we raise alarm after programmable threshold amount of time elapsed (say 15min). In Python program we didn’t implemented sms service (paid service) or app notification, instead to show alarm we just embedded frame with warning text. Messaging service can be implemented with **Twilio API**
-
-For face detect model, Openvino pretrained model **face-detection-retail-0004** is used and for age prediction we used **[Gil Levi and Tal Hassner Age Classification](https://talhassner.github.io/home/publication/2015_CVPR)** Using Convolutional Neural Network. Age prediction model is available as Caffe model, we converted it to Openvino IR format using model optimizer.
-
-# Flow Chart
-![Algorithm Flow Chart](https://github.com/chetancyber24/Leftout_Kid_Detect_in_Car/blob/master/flow_chart.png)
-
-
-
 # How to run Python Program in Windows 10
 
  - Unzip project showcase folder.
@@ -60,6 +36,30 @@ For face detect model, Openvino pretrained model **face-detection-retail-0004** 
 
 # Demo Video
 Python Program Demo Video can be accessed here : https://www.youtube.com/watch?v=978tXgmopO4&feature=youtu.be
+
+ 
+
+
+# Problem Statement
+
+Child heatstroke car death is big safety issue and it caused significant no of children death worldwide.  In 2019, there are **53 children deaths** due to hot car death alone in US (reference [https://www.kidsandcars.org/how-kids-get-hurt/heat-stroke/](https://www.kidsandcars.org/how-kids-get-hurt/heat-stroke/)) .  On average there are 38 deaths per year and **940 children death** since 1990 in US alone, worldwide number will be more.
+
+
+
+# Solution(Idea)
+
+Our  idea to solve above problem is to use in car camera to detect alone left out kid(s) with help of computer vision and deep learning model. Below is pictorial representation (**Flow Chart Section**) of our idea to detect left out kid in car. We are using camera to detect occupants age and deciding whether there are **only kid(s)** present in car for more than threshold time, if yes, we raise alarm i.e send sms or app notifications to parents  either using Car V2X technology(Connected car) or in-built modem with camera. It can also raise alarm to emergency response team (i.e. 911).
+
+To detect occupants age, first we use face detection deep learning model to detect face and get its associated bounding box. Then we cropped face of each occupant and feed it to age prediction deep learning model to predict age of each occupant in car. Once we have predicted age of all occupants, we categorized each occupant to kid (less than or equal to 12 years) or adult (greater than 12 years) in given frame. If we detect only kid(s) with no adult present in car, we raise alarm after programmable threshold amount of time elapsed (say 15min). In Python program we didn’t implemented sms service (paid service) or app notification, instead to show alarm we just embedded frame with warning text. Messaging service can be implemented with **Twilio API**
+
+For face detect model, Openvino pretrained model **face-detection-retail-0004** is used and for age prediction we used **[Gil Levi and Tal Hassner Age Classification](https://talhassner.github.io/home/publication/2015_CVPR)** Using Convolutional Neural Network. Age prediction model is available as Caffe model, we converted it to Openvino IR format using model optimizer.
+
+# Flow Chart
+![Algorithm Flow Chart](https://github.com/chetancyber24/Leftout_Kid_Detect_in_Car/blob/master/flow_chart.png)
+
+
+
+
 
 
 
